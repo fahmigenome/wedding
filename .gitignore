@@ -7,4 +7,5 @@ Thumbs.db
 
 # Agent files
 .agents/
+graphify-out/
 
