@@ -1949,19 +1949,37 @@ body[style*="position:fixed"] #kolom{
 }
 
 /* ==========================================================================
-   CALLIGRAPHY / SCRIPT FONT: EXACT MATCH TO TEMPLATE (Spring In May)
-   - Exactly matches the font in reference photo 2 (Habib & Adiba)
+   TYPOGRAPHY RESTORATION (EXACT MATCH TO TEMPLATE)
+   1. COVER DEPAN (Photo 2: Habib & Adiba):
+      Menggunakan font serif elegan 'Analogue'
+   2. LAYAR PEMBUKA & PROFIL MEMPELAI (Photo 3 & 4):
+      Menggunakan font kaligrafi 'Spring In May'
    ========================================================================== */
+
+/* 1. Cover Depan & Penutup: Font Analogue (Sesuai Foto 2 Habib & Adiba) */
 .elementor-element-1d009123 .elementor-heading-title,
 .elementor-element-47e869c4 .elementor-heading-title,
+.elementor-element-47b90e3a .elementor-heading-title,
+#sec [data-bind="couple.names"],
+#desk_cov [data-bind="couple.names"] {
+  font-family: 'Analogue', 'Analogue Js Vbfu', serif, sans-serif !important;
+  font-size: clamp(34px, 7.5vw, 48px) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.25 !important;
+  text-transform: capitalize !important;
+  color: #405962 !important;
+  text-shadow: none !important;
+}
+
+/* 2. Layar Pembuka / Video Intro: Font Spring In May (Sesuai Foto 3 & 4) */
 .elementor-element-4313f941,
 .elementor-element-4313f941 .elementor-widget-container,
-.elementor-element-47b90e3a .elementor-heading-title,
-[data-bind="couple.names"],
 [data-bind-html="couple.namesBreak"] {
   font-family: 'Spring In May', 'Spring In May Gbu Oi4', cursive, sans-serif !important;
   font-size: clamp(48px, 11vw, 76px) !important;
-  font-weight: normal !important;
+  font-weight: 400 !important;
   font-style: normal !important;
   letter-spacing: 0px !important;
   line-height: 1.15 !important;
@@ -1970,18 +1988,18 @@ body[style*="position:fixed"] #kolom{
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Mempelai section fullnames */
+/* 3. Profil Mempelai: Font Analogue */
 .elementor-element-6cdae2f9 .elementor-heading-title,
 .elementor-element-68f8f6a5 .elementor-heading-title,
 [data-bind="couple.groom.fullname"],
 [data-bind="couple.bride.fullname"] {
-  font-family: 'Spring In May', 'Spring In May Gbu Oi4', cursive, sans-serif !important;
-  font-size: clamp(38px, 8vw, 56px) !important;
-  font-weight: normal !important;
-  letter-spacing: 0px !important;
-  line-height: 1.2 !important;
+  font-family: 'Analogue', 'Analogue Js Vbfu', serif, sans-serif !important;
+  font-size: clamp(26px, 5.5vw, 34px) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.25 !important;
   text-transform: none !important;
-  color: #405962 !important;
+  color: #865D3D !important;
 }
 </style>
 
@@ -2003,6 +2021,6 @@ function copyAlamatKado(btn) {
     });
 }
 </script>
-<script src="config.js?v=4.6"></script>
+<script src="config.js?v=4.7"></script>
 	</body>
 </html>
