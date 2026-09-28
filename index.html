@@ -878,6 +878,11 @@ p {
                         <span class="idb-kirim-hadiah__sep">:</span>
                         <span class="idb-kirim-hadiah__value" data-bind="gifts.physicalGift.address">Jl. Alamat Pengiriman Kado Fisik No. 123</span>
                     </div>
+                    <div style="margin-top: 14px; text-align: center;">
+                        <button type="button" class="idb-copy-alamat-btn" onclick="copyAlamatKado(this)">
+                            <i class="far fa-copy" style="margin-right: 6px;"></i> Salin Alamat
+                        </button>
+                    </div>
                                                     </div>
 
                             </div>
@@ -1546,32 +1551,37 @@ body[style*="position:fixed"] #kolom{
   50%{transform:scale(1.08)}
   100%{transform:scale(1)}
 }</style>
-<style id="luxury-amplop-redesign">
-/* ===================================================
-   LUXURY VINTAGE THEME: AMPLOP DIGITAL & KIRIM HADIAH
-   =================================================== */
+<style id="luxury-theme-harmonization">
+/* ==========================================================================
+   THEME HARMONIZATION: VINTAGE SLATE TEAL & OBSIDIAN
+   - Harmonize buttons to Slate Teal palette (Save The Date, Lokasi, Kirim, Buka Rekening)
+   - Eliminate raw yellow/mustard colors
+   - Suppress ugly pink error box in RSVP form
+   - Refine Hadir / Tidak Hadir pills to sleek glass
+   - Transform music player into elegant floating circular glass widget
+   ========================================================================== */
 
+/* 1. Tombol "Buka Rekening & Kado" */
 #klik {
-  margin: 18px auto 8px auto !important;
+  margin: 20px auto 10px auto !important;
   display: flex !important;
   justify-content: center !important;
 }
 
 #klik .elementor-button {
-  background: linear-gradient(135deg, rgba(212, 168, 83, 0.2) 0%, rgba(212, 168, 83, 0.08) 100%) !important;
-  border: 1.5px solid rgba(212, 168, 83, 0.55) !important;
-  color: #fce8bd !important;
+  background: linear-gradient(135deg, #446874 0%, #2f4e58 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
   border-radius: 50px !important;
-  padding: 13px 32px !important;
+  padding: 12px 32px !important;
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
   letter-spacing: 0.5px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 0 14px rgba(212, 168, 83, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(47, 78, 88, 0.35) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
-  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
   cursor: pointer !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -1580,27 +1590,20 @@ body[style*="position:fixed"] #kolom{
 
 #klik .elementor-button:hover,
 #klik .elementor-button:active {
-  background: linear-gradient(135deg, #d4a853 0%, #f5d796 100%) !important;
-  color: #111a1b !important;
-  border-color: #f5d796 !important;
-  transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 0 12px 28px rgba(212, 168, 83, 0.4), 0 0 20px rgba(212, 168, 83, 0.3) !important;
-  text-shadow: none !important;
+  background: linear-gradient(135deg, #537d8b 0%, #3a5e6a 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(47, 78, 88, 0.5) !important;
 }
 
 #klik .elementor-button-icon {
-  color: #f5d796 !important;
+  color: #ffffff !important;
   margin-right: 8px !important;
   font-size: 15px !important;
-  transition: color 0.3s ease !important;
 }
 
-#klik .elementor-button:hover .elementor-button-icon {
-  color: #111a1b !important;
-}
-
+/* 2. Kartu Rekening SeaBank (Matte Obsidian) */
 #amplop {
-  padding: 12px 0 !important;
+  padding: 14px 0 !important;
   gap: 16px !important;
 }
 
@@ -1609,54 +1612,32 @@ body[style*="position:fixed"] #kolom{
 }
 
 .idb-copy-rek__box {
-  background: linear-gradient(145deg, rgba(20, 36, 40, 0.88) 0%, rgba(10, 20, 22, 0.94) 100%) !important;
-  border: 1px solid rgba(212, 168, 83, 0.38) !important;
+  background: linear-gradient(145deg, rgba(20, 36, 40, 0.92) 0%, rgba(10, 20, 24, 0.96) 100%) !important;
+  border: 1px solid rgba(212, 168, 83, 0.35) !important;
   border-radius: 20px !important;
   padding: 22px 24px !important;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
   position: relative !important;
   overflow: hidden !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
 }
 
 .idb-copy-rek__box:hover {
-  transform: translateY(-3px) !important;
-  border-color: rgba(212, 168, 83, 0.7) !important;
-  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.55), 0 0 20px rgba(212, 168, 83, 0.2) !important;
-}
-
-.idb-copy-rek__box::before {
-  content: '' !important;
-  position: absolute !important;
-  top: -60px !important;
-  right: -60px !important;
-  width: 160px !important;
-  height: 160px !important;
-  background: radial-gradient(circle, rgba(212, 168, 83, 0.15) 0%, transparent 70%) !important;
-  pointer-events: none !important;
-}
-
-.idb-copy-rek__box::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 3px !important;
-  background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 83, 0.6) 50%, transparent 100%) !important;
+  transform: translateY(-2px) !important;
+  border-color: rgba(212, 168, 83, 0.6) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6) !important;
 }
 
 .idb-copy-rek__banklogo {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: rgba(255, 255, 255, 0.96) !important;
+  background: #ffffff !important;
   padding: 6px 14px !important;
-  border-radius: 10px !important;
+  border-radius: 12px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-  border: 1px solid rgba(212, 168, 83, 0.3) !important;
 }
 
 .idb-copy-rek__banklogo img {
@@ -1677,11 +1658,11 @@ body[style*="position:fixed"] #kolom{
 }
 
 .idb-copy-rek__numtext {
-  font-family: 'Playfair Display', 'Plus Jakarta Sans', monospace !important;
+  font-family: 'Playfair Display', monospace !important;
   font-size: 21px !important;
   font-weight: 700 !important;
-  letter-spacing: 2.5px !important;
-  color: #fce8bd !important;
+  letter-spacing: 2px !important;
+  color: #fdfbf7 !important;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
   margin: 8px 0 4px 0 !important;
 }
@@ -1692,22 +1673,23 @@ body[style*="position:fixed"] #kolom{
   font-size: 13.5px !important;
   font-weight: 600 !important;
   letter-spacing: 1px !important;
-  color: #cbd5d7 !important;
+  color: #a4bcc2 !important;
   text-transform: uppercase !important;
   margin-top: 4px !important;
 }
 
+/* Tombol Copy Harmonis (Slate Teal) */
 .idb-copy-rek__btn {
-  background: linear-gradient(135deg, #d4a853 0%, #b88a38 100%) !important;
-  color: #121c1e !important;
-  border: none !important;
+  background: linear-gradient(135deg, #446874 0%, #2f4e58 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 50px !important;
-  padding: 9px 20px !important;
+  padding: 8px 22px !important;
   font-family: 'Plus Jakarta Sans', sans-serif !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   font-size: 12.5px !important;
   letter-spacing: 0.5px !important;
-  box-shadow: 0 4px 14px rgba(212, 168, 83, 0.35) !important;
+  box-shadow: 0 4px 14px rgba(47, 78, 88, 0.35) !important;
   transition: all 0.25s ease !important;
   cursor: pointer !important;
   display: inline-flex !important;
@@ -1717,15 +1699,15 @@ body[style*="position:fixed"] #kolom{
 
 .idb-copy-rek__btn:hover,
 .idb-copy-rek__btn:active {
-  background: linear-gradient(135deg, #f5d796 0%, #d4a853 100%) !important;
+  background: linear-gradient(135deg, #537d8b 0%, #3a5e6a 100%) !important;
   transform: translateY(-2px) scale(1.04) !important;
-  box-shadow: 0 6px 18px rgba(212, 168, 83, 0.5) !important;
+  box-shadow: 0 6px 18px rgba(47, 78, 88, 0.5) !important;
 }
 
 .idb-copy-rek__toast {
-  background: rgba(16, 28, 30, 0.96) !important;
-  color: #f5d796 !important;
-  border: 1px solid rgba(212, 168, 83, 0.5) !important;
+  background: rgba(14, 26, 30, 0.96) !important;
+  color: #fdfbf7 !important;
+  border: 1px solid rgba(68, 104, 116, 0.5) !important;
   border-radius: 8px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
@@ -1733,41 +1715,30 @@ body[style*="position:fixed"] #kolom{
   box-shadow: 0 6px 20px rgba(0,0,0,0.4) !important;
 }
 
+/* 3. Kirim Hadiah (Fisik) */
 .idb-kirim-hadiah__box {
-  background: linear-gradient(145deg, rgba(20, 36, 40, 0.88) 0%, rgba(10, 20, 22, 0.94) 100%) !important;
-  border: 1px solid rgba(212, 168, 83, 0.38) !important;
+  background: linear-gradient(145deg, rgba(20, 36, 40, 0.92) 0%, rgba(10, 20, 24, 0.96) 100%) !important;
+  border: 1px solid rgba(212, 168, 83, 0.35) !important;
   border-radius: 20px !important;
   padding: 24px !important;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  color: #f5f0eb !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  color: #fdfbf7 !important;
   position: relative !important;
   overflow: hidden !important;
   margin-top: 15px !important;
 }
 
-.idb-kirim-hadiah__box::before {
-  content: '' !important;
-  position: absolute !important;
-  top: -50px !important;
-  left: -50px !important;
-  width: 140px !important;
-  height: 140px !important;
-  background: radial-gradient(circle, rgba(212, 168, 83, 0.12) 0%, transparent 70%) !important;
-  pointer-events: none !important;
-}
-
 .idb-kirim-hadiah__icon {
-  color: #f5d796 !important;
+  color: #e2edf0 !important;
   font-size: 28px !important;
   margin-bottom: 10px !important;
-  text-shadow: 0 0 16px rgba(212, 168, 83, 0.4) !important;
 }
 
 .idb-kirim-hadiah__title {
   font-family: 'Playfair Display', serif !important;
-  color: #fce8bd !important;
+  color: #fdfbf7 !important;
   font-size: 20px !important;
   font-weight: 700 !important;
   letter-spacing: 0.5px !important;
@@ -1775,7 +1746,7 @@ body[style*="position:fixed"] #kolom{
 }
 
 .idb-kirim-hadiah__content {
-  border-top: 1px dashed rgba(212, 168, 83, 0.25) !important;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15) !important;
   padding-top: 14px !important;
 }
 
@@ -1786,21 +1757,215 @@ body[style*="position:fixed"] #kolom{
 }
 
 .idb-kirim-hadiah__label {
-  color: #9cb1b5 !important;
+  color: #a4bcc2 !important;
   font-weight: 500 !important;
 }
 
 .idb-kirim-hadiah__sep {
-  color: #d4a853 !important;
+  color: #e2edf0 !important;
   margin: 0 6px !important;
 }
 
 .idb-kirim-hadiah__value {
-  color: #fdfbf7 !important;
+  color: #ffffff !important;
   font-weight: 600 !important;
+}
+
+/* 4. Pembersihan & Harmonisasi Form RSVP */
+/* Sembunyikan pesan error pink bawaan yang mengotori form */
+.rsvp-error-top,
+.rsvp-error--name,
+.rsvp-error {
+  display: none !important;
+}
+
+.rsvp-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* Input Fields */
+.rsvp-input,
+.rsvp-textarea {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(68, 104, 116, 0.3) !important;
+  border-radius: 12px !important;
+  color: #1a2a2e !important;
+  padding: 13px 16px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+  transition: all 0.3s ease !important;
+  outline: none !important;
+  width: 100% !important;
+}
+
+.rsvp-input:focus,
+.rsvp-textarea:focus {
+  background: #ffffff !important;
+  border-color: #446874 !important;
+  box-shadow: 0 0 0 3px rgba(68, 104, 116, 0.25) !important;
+}
+
+.rsvp-presence-label {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  margin-bottom: 8px !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4) !important;
+}
+
+/* Pills Hadir / Tidak Hadir */
+.rsvp-pills {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.rsvp-pill {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 50px !important;
+  color: #ffffff !important;
+  padding: 10px 24px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  transition: all 0.25s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.rsvp-pill .pill-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.rsvp-pill.is-active,
+.rsvp-pill[data-active="1"] {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: #ffffff !important;
+}
+
+.rsvp-pill.is-active[data-rsvp-pill="hadir"],
+.rsvp-pill[data-active="1"][data-rsvp-pill="hadir"] {
+  background: rgba(46, 174, 79, 0.35) !important;
+  border-color: #4ade80 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(46, 174, 79, 0.35) !important;
+}
+
+.rsvp-pill.is-active[data-rsvp-pill="tidak"],
+.rsvp-pill[data-active="1"][data-rsvp-pill="tidak"] {
+  background: rgba(242, 13, 22, 0.3) !important;
+  border-color: #f87171 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(242, 13, 22, 0.35) !important;
+}
+
+/* Tombol Kirim Harmonis (Slate Teal) - Gantikan Kuning Mustard */
+.rsvp-send {
+  background: linear-gradient(135deg, #446874 0%, #2f4e58 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 50px !important;
+  padding: 14px 28px !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 8px 24px rgba(47, 78, 88, 0.4) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  width: 100% !important;
+}
+
+.rsvp-send:hover,
+.rsvp-send:active {
+  background: linear-gradient(135deg, #537d8b 0%, #385b67 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 30px rgba(47, 78, 88, 0.55) !important;
+}
+
+/* 5. Floating Music Player (Hilangkan Balok Kaku Footer) */
+.elementor-element-dc01a12 {
+  background: transparent !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+  position: static !important;
+}
+
+.elementor-widget-bisdev_musik {
+  position: static !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.idb-audio-box {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, rgba(68, 104, 116, 0.92) 0%, rgba(47, 78, 88, 0.98) 100%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.idb-audio-box:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+.idb-audio-box .elementor-icon {
+  color: #ffffff !important;
+  font-size: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 </style>
 
-<script src="config.js?v=4.3"></script>
+<script>
+function copyAlamatKado(btn) {
+    var el = document.querySelector('[data-bind="gifts.physicalGift.address"]');
+    if (!el) return;
+    var text = el.innerText.trim();
+    navigator.clipboard.writeText(text).then(function() {
+        var orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check" style="margin-right: 6px;"></i> Tersalin!';
+        btn.style.background = 'linear-gradient(135deg, #2f4e58 0%, #1e353c 100%)';
+        setTimeout(function() {
+            btn.innerHTML = orig;
+            btn.style.background = '';
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Gagal menyalin:', err);
+    });
+}
+</script>
+<script src="config.js?v=4.4"></script>
 	</body>
 </html>
