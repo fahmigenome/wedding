@@ -615,26 +615,42 @@ function initRsvpSystem() {
 
     // Submit Wish Form
     if (sendBtn) {
-        sendBtn.addEventListener('click', async function() {
+        sendBtn.onclick = async function(e) {
+            if (e) e.preventDefault();
             const name = (nameInput ? nameInput.value : '').trim();
             const message = (messageInput ? messageInput.value : '').trim();
             const hp = (hpInput ? hpInput.value : '').trim();
 
             if (!name) {
-                alert('Silakan masukkan nama Anda.');
+                if (liveAlert) {
+                    liveAlert.innerHTML = `
+                        <div style="padding:10px 14px; background:#fff2f2; color:#d93025; border:1px solid #f5c6cb; border-radius:8px; margin:10px 0; font-size:13px; text-align:center;">
+                            ⚠️ Silakan masukkan nama Anda terlebih dahulu.
+                        </div>`;
+                } else {
+                    alert('Silakan masukkan nama Anda.');
+                }
                 if (nameInput) nameInput.focus();
                 return;
             }
 
             if (!message) {
-                alert('Silakan tuliskan ucapan & do\'a untuk kedua mempelai.');
+                if (liveAlert) {
+                    liveAlert.innerHTML = `
+                        <div style="padding:10px 14px; background:#fff2f2; color:#d93025; border:1px solid #f5c6cb; border-radius:8px; margin:10px 0; font-size:13px; text-align:center;">
+                            ⚠️ Silakan tuliskan ucapan & do'a untuk kedua mempelai.
+                        </div>`;
+                } else {
+                    alert('Silakan tuliskan ucapan & do\'a untuk kedua mempelai.');
+                }
                 if (messageInput) messageInput.focus();
                 return;
             }
 
-            const originalBtnText = sendBtn.innerText;
+            const originalBtnText = sendBtn.innerHTML;
             sendBtn.disabled = true;
-            sendBtn.innerText = 'Mengirimkan Ucapan...';
+            sendBtn.style.opacity = '0.7';
+            sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:6px;"></i> Mengirimkan...';
 
             try {
                 const res = await fetch(apiEndpoint, {
@@ -653,7 +669,7 @@ function initRsvpSystem() {
                 if (res.ok && result.success) {
                     if (liveAlert) {
                         liveAlert.innerHTML = `
-                            <div style="padding:12px 16px; background:#e8f8ec; color:#1e7e34; border-radius:8px; margin:12px 0; font-size:13px; text-align:center; font-weight:500;">
+                            <div style="padding:12px 16px; background:#e8f8ec; color:#1e7e34; border:1px solid #c3e6cb; border-radius:8px; margin:12px 0; font-size:13px; text-align:center; font-weight:600;">
                                 ✨ Terima kasih atas do'a dan konfirmasi kehadiran Anda!
                             </div>`;
                         setTimeout(() => { liveAlert.innerHTML = ''; }, 6000);
@@ -662,30 +678,51 @@ function initRsvpSystem() {
                     if (messageInput) messageInput.value = '';
                     await loadWishes();
                 } else {
-                    alert(result.error || 'Terjadi kendala saat mengirim ucapan. Silakan coba lagi.');
+                    const errText = result.error || 'Terjadi kendala saat mengirim ucapan. Silakan coba lagi.';
+                    if (liveAlert) {
+                        liveAlert.innerHTML = `<div style="padding:10px 14px; background:#fff2f2; color:#d93025; border:1px solid #f5c6cb; border-radius:8px; margin:10px 0; font-size:13px; text-align:center;">${escapeHtml(errText)}</div>`;
+                    } else {
+                        alert(errText);
+                    }
                 }
             } catch (err) {
-                alert('Gagal terhubung ke server database. Pastikan koneksi internet aktif.');
+                if (liveAlert) {
+                    liveAlert.innerHTML = `<div style="padding:10px 14px; background:#fff2f2; color:#d93025; border:1px solid #f5c6cb; border-radius:8px; margin:10px 0; font-size:13px; text-align:center;">Gagal terhubung ke database. Pastikan koneksi internet aktif.</div>`;
+                } else {
+                    alert('Gagal terhubung ke database. Pastikan koneksi internet aktif.');
+                }
             } finally {
                 sendBtn.disabled = false;
-                sendBtn.innerText = originalBtnText;
+                sendBtn.style.opacity = '';
+                sendBtn.innerHTML = originalBtnText;
             }
-        });
+        };
     }
 
     // Initial load
     loadWishes();
 }
 
+function runInit() {
+    applyWeddingData();
+    fetchLiveConfig();
+    initRsvpSystem();
+}
+
 if (typeof document !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', () => {
-        applyWeddingData();
-        fetchLiveConfig();
-        initRsvpSystem();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            runInit();
+            setTimeout(applyWeddingData, 100);
+            setTimeout(applyWeddingData, 400);
+            setTimeout(applyWeddingData, 1200);
+        });
+    } else {
+        runInit();
         setTimeout(applyWeddingData, 100);
         setTimeout(applyWeddingData, 400);
         setTimeout(applyWeddingData, 1200);
-    });
+    }
 }
 if (typeof window !== 'undefined') {
     window.addEventListener('load', applyWeddingData);
