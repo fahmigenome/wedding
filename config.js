@@ -48,7 +48,7 @@ let WEDDING_DATA = {
 
     photos: {
         coverBg: "assets/images/cover-bg.webp",
-        mainCouple: "assets/images/couple-main.jpg",
+        mainCouple: "assets/images/cover-wreath.jpg",
         storyPhoto: "assets/images/story-art.jpg",
         closingPhoto: "assets/images/countdown-art.jpg"
     },
@@ -247,8 +247,8 @@ function applyWeddingData() {
         'story.story3Title': d.story?.story3Title || '',
         'story.story3Desc': d.story?.story3Desc || '',
         
-        'photos.coverBg': d.photos.coverBg,
-        'photos.mainCouple': d.photos.mainCouple,
+        'photos.coverBg': (d.photos.coverBg && d.photos.coverBg !== 'assets/images/couple-main.jpg') ? d.photos.coverBg : 'assets/images/cover-wreath.jpg',
+        'photos.mainCouple': (d.photos.mainCouple && d.photos.mainCouple !== 'assets/images/couple-main.jpg') ? d.photos.mainCouple : 'assets/images/cover-wreath.jpg',
         'photos.storyPhoto': (d.photos.storyPhoto && d.photos.storyPhoto !== 'assets/images/couple-main.jpg') ? d.photos.storyPhoto : 'assets/images/story-art.jpg',
         'photos.closingPhoto': (d.photos.closingPhoto && d.photos.closingPhoto !== 'assets/images/couple-main.jpg') ? d.photos.closingPhoto : 'assets/images/countdown-art.jpg',
         
