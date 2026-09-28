@@ -9,7 +9,7 @@ let WEDDING_DATA = {
             fullname: "Nama Mempelai Pria",
             parents: "Putra dari Bapak ... & Ibu ...",
             instagram: "https://www.instagram.com/",
-            photo: "assets/images/couple-main.jpg"
+            photo: "assets/images/groom-art.jpg"
         },
         
         bride: {
@@ -17,7 +17,7 @@ let WEDDING_DATA = {
             fullname: "Nama Mempelai Wanita",
             parents: "Putri dari Bapak ... & Ibu ...",
             instagram: "https://www.instagram.com/",
-            photo: "assets/images/couple-main.jpg"
+            photo: "assets/images/bride-art.jpg"
         }
     },
 
@@ -49,7 +49,8 @@ let WEDDING_DATA = {
     photos: {
         coverBg: "assets/images/cover-bg.webp",
         mainCouple: "assets/images/couple-main.jpg",
-        storyPhoto: "assets/images/couple-main.jpg"
+        storyPhoto: "assets/images/story-art.jpg",
+        closingPhoto: "assets/images/countdown-art.jpg"
     },
 
     events: {
@@ -214,7 +215,7 @@ function applyWeddingData() {
             }
             return ig;
         })(),
-        'couple.groom.photo': d.couple.groom.photo,
+        'couple.groom.photo': (d.couple.groom.photo && d.couple.groom.photo !== 'assets/images/couple-main.jpg') ? d.couple.groom.photo : 'assets/images/groom-art.jpg',
         
         'couple.bride.nickname': d.couple.bride.nickname,
         'couple.bride.fullname': d.couple.bride.fullname,
@@ -226,7 +227,7 @@ function applyWeddingData() {
             }
             return ig;
         })(),
-        'couple.bride.photo': d.couple.bride.photo,
+        'couple.bride.photo': (d.couple.bride.photo && d.couple.bride.photo !== 'assets/images/couple-main.jpg') ? d.couple.bride.photo : 'assets/images/bride-art.jpg',
 
         'quotes.fullHtml': quoteHtml,
         'quotes.text': d.quotes?.text || '',
@@ -248,7 +249,8 @@ function applyWeddingData() {
         
         'photos.coverBg': d.photos.coverBg,
         'photos.mainCouple': d.photos.mainCouple,
-        'photos.storyPhoto': d.photos.storyPhoto,
+        'photos.storyPhoto': (d.photos.storyPhoto && d.photos.storyPhoto !== 'assets/images/couple-main.jpg') ? d.photos.storyPhoto : 'assets/images/story-art.jpg',
+        'photos.closingPhoto': (d.photos.closingPhoto && d.photos.closingPhoto !== 'assets/images/couple-main.jpg') ? d.photos.closingPhoto : 'assets/images/countdown-art.jpg',
         
         'events.countdownTarget': d.events.countdownTarget,
         'events.akad.title': d.events.akad.title,
