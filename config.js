@@ -79,19 +79,19 @@ let WEDDING_DATA = {
         description: "Doa restu Anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara cashless.",
         bank: {
             bankName: "SeaBank",
-            logo: "assets/images/bank-seabank.svg",
+            logo: "assets/images/bank-seabank.svg?v=2",
             accountNumber: "1234567890",
             accountHolder: "Nama Pemilik Rekening"
         },
         bankGroom: {
             bankName: "SeaBank",
-            logo: "assets/images/bank-seabank.svg",
+            logo: "assets/images/bank-seabank.svg?v=2",
             accountNumber: "1234567890",
             accountHolder: "Fahmi Fakih"
         },
         bankBride: {
             bankName: "SeaBank",
-            logo: "assets/images/bank-seabank.svg",
+            logo: "assets/images/bank-seabank.svg?v=2",
             accountNumber: "0987654321",
             accountHolder: "Okta"
         },
@@ -257,10 +257,26 @@ function applyWeddingData() {
         
         'gifts.title': d.gifts?.title || 'Amplop Digital',
         'gifts.description': d.gifts?.description || '',
-        'gifts.bankGroom.logo': (d.gifts.bankGroom || d.gifts.bank).logo || 'assets/images/bank-seabank.svg',
+        'gifts.bankGroom.logo': (function() {
+            const b = d.gifts?.bankGroom || d.gifts?.bank;
+            const bankName = (b?.bankName || '').toLowerCase();
+            if (bankName.includes('bri')) return 'assets/images/bank-bri.png';
+            if (bankName.includes('bca')) return 'assets/images/bank-bca.webp';
+            if (bankName.includes('sea') || bankName.includes('seabank')) return 'assets/images/bank-seabank.svg?v=2';
+            if (b?.logo && !b.logo.includes('bank-bca')) return b.logo;
+            return 'assets/images/bank-seabank.svg?v=2';
+        })(),
         'gifts.bankGroom.accountNumber': (d.gifts.bankGroom || d.gifts.bank).accountNumber,
         'gifts.bankGroom.accountHolderWithNick': `${(d.gifts.bankGroom || d.gifts.bank).accountHolder} (${d.couple.groom.nickname || 'Mempelai Pria'})`,
-        'gifts.bankBride.logo': d.gifts.bankBride?.logo || (d.gifts.bankGroom || d.gifts.bank).logo || 'assets/images/bank-seabank.svg',
+        'gifts.bankBride.logo': (function() {
+            const b = d.gifts?.bankBride || d.gifts?.bank;
+            const bankName = (b?.bankName || '').toLowerCase();
+            if (bankName.includes('bri')) return 'assets/images/bank-bri.png';
+            if (bankName.includes('bca')) return 'assets/images/bank-bca.webp';
+            if (bankName.includes('sea') || bankName.includes('seabank')) return 'assets/images/bank-seabank.svg?v=2';
+            if (b?.logo && !b.logo.includes('bank-bca')) return b.logo;
+            return 'assets/images/bank-seabank.svg?v=2';
+        })(),
         'gifts.bankBride.accountNumber': d.gifts.bankBride ? d.gifts.bankBride.accountNumber : '',
         'gifts.bankBride.accountHolderWithNick': d.gifts.bankBride ? `${d.gifts.bankBride.accountHolder} (${d.couple.bride.nickname || 'Mempelai Wanita'})` : '',
         
