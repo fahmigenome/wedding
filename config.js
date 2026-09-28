@@ -557,7 +557,7 @@ function initRsvpSystem() {
         if (!listWrap) return;
         if (!wishes || wishes.length === 0) {
             listWrap.innerHTML = `
-                <li style="text-align:center; padding: 26px 16px; color: #9cb1a6; font-style: italic; list-style:none; font-size:13.5px;">
+                <li style="text-align:center; padding: 24px 16px; color: #888; font-style: italic; list-style:none;">
                     Belum ada ucapan. Jadilah yang pertama memberikan do'a & ucapan selamat!
                 </li>`;
             return;
@@ -565,28 +565,27 @@ function initRsvpSystem() {
 
         listWrap.innerHTML = wishes.map(w => {
             const isHadir = (w.presence || '').toLowerCase() === 'hadir';
-            const badgeBg = isHadir ? 'rgba(74, 222, 128, 0.16)' : 'rgba(248, 113, 113, 0.16)';
-            const badgeColor = isHadir ? '#86efac' : '#fca5a5';
-            const badgeBorder = isHadir ? 'rgba(74, 222, 128, 0.35)' : 'rgba(248, 113, 113, 0.35)';
+            const badgeBg = isHadir ? 'rgba(46, 174, 79, 0.12)' : 'rgba(242, 13, 22, 0.12)';
+            const badgeColor = isHadir ? '#2FAE4F' : '#F20D16';
             const badgeText = isHadir ? 'Hadir' : 'Tidak Hadir';
             const initial = (w.name || 'T').trim().charAt(0).toUpperCase();
 
             return `
-                <li class="rsvp-item" style="display:flex; gap:14px; padding:16px 18px; margin-bottom:14px; background:linear-gradient(145deg, rgba(22, 38, 32, 0.78) 0%, rgba(13, 24, 20, 0.9) 100%); border-radius:18px; box-shadow:0 8px 24px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.08); list-style:none; border:1px solid rgba(255, 255, 255, 0.12); text-align:left; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); transition:transform 0.25s ease, border-color 0.25s ease;">
-                    <div style="width:40px; height:40px; border-radius:50%; background:rgba(216, 234, 214, 0.16); color:#d8ead6; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; flex-shrink:0; box-shadow:0 4px 14px rgba(0,0,0,0.25); border:1px solid rgba(216, 234, 214, 0.3);">
+                <li class="rsvp-item" style="display:flex; gap:12px; padding:14px 16px; margin-bottom:12px; background:rgba(255,255,255,0.85); border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04); list-style:none; border:1px solid rgba(0,0,0,0.05); text-align:left;">
+                    <div style="width:38px; height:38px; border-radius:50%; background:#d4af37; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; flex-shrink:0;">
                         ${initial}
                     </div>
                     <div style="flex:1; min-width:0;">
-                        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
-                            <span style="font-weight:700; color:#f5f7f5; font-size:14px; letter-spacing:0.2px;">${escapeHtml(w.name)}</span>
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:4px; flex-wrap:wrap;">
+                            <span style="font-weight:600; color:#2c3e50; font-size:14px;">${escapeHtml(w.name)}</span>
                             <div style="display:flex; align-items:center; gap:6px;">
-                                <span style="font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:12px; background:${badgeBg}; color:${badgeColor}; border:1px solid ${badgeBorder};">
+                                <span style="font-size:11px; font-weight:600; padding:2px 8px; border-radius:10px; background:${badgeBg}; color:${badgeColor};">
                                     ${badgeText}
                                 </span>
-                                <span style="font-size:11px; color:#9cb1a6;">${timeAgo(w.created_at)}</span>
+                                <span style="font-size:11px; color:#999;">${timeAgo(w.created_at)}</span>
                             </div>
                         </div>
-                        <div style="font-size:13.5px; color:#c2d4cb; line-height:1.6; white-space:pre-wrap; word-break:break-word;">${escapeHtml(w.message)}</div>
+                        <div style="font-size:13px; color:#555; line-height:1.5; white-space:pre-wrap; word-break:break-word;">${escapeHtml(w.message)}</div>
                     </div>
                 </li>
             `;
@@ -654,7 +653,7 @@ function initRsvpSystem() {
                 if (res.ok && result.success) {
                     if (liveAlert) {
                         liveAlert.innerHTML = `
-                            <div style="padding:14px 18px; background:linear-gradient(145deg, rgba(22, 38, 32, 0.95) 0%, rgba(13, 24, 20, 0.98) 100%); color:#d8ead6; border:1px solid rgba(205, 227, 203, 0.35); border-radius:14px; margin:14px 0; font-size:13.5px; text-align:center; font-weight:600; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+                            <div style="padding:12px 16px; background:#e8f8ec; color:#1e7e34; border-radius:8px; margin:12px 0; font-size:13px; text-align:center; font-weight:500;">
                                 ✨ Terima kasih atas do'a dan konfirmasi kehadiran Anda!
                             </div>`;
                         setTimeout(() => { liveAlert.innerHTML = ''; }, 6000);
