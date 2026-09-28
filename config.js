@@ -302,13 +302,35 @@ function applyWeddingData() {
         }
     });
 
-    // 4. Apply data-bind-bg (backgroundImage)
+    // 4. Apply data-bind-bg (backgroundImage) & sync CSS variable
+    const mainPhotoUrl = bindings['photos.mainCouple'] || bindings['photos.coverBg'] || 'assets/images/couple-main.jpg';
+    if (typeof document !== 'undefined' && document.documentElement) {
+        document.documentElement.style.setProperty('--couple-main-bg', `url("${mainPhotoUrl}")`);
+    }
+
     document.querySelectorAll('[data-bind-bg]').forEach(el => {
         const key = el.getAttribute('data-bind-bg');
-        if (bindings[key]) {
-            el.style.backgroundImage = `url("${bindings[key]}")`;
+        const imgUrl = bindings[key];
+        if (imgUrl) {
+            el.style.setProperty('background-image', `url("${imgUrl}")`, 'important');
+            el.querySelectorAll('.elementor-motion-effects-layer').forEach(layer => {
+                layer.style.setProperty('background-image', `url("${imgUrl}")`, 'important');
+            });
         }
     });
+
+    const deskCov = document.getElementById('desk_cov');
+    if (deskCov && !deskCov._motionObserver) {
+        deskCov._motionObserver = new MutationObserver(() => {
+            const currentUrl = bindings['photos.mainCouple'] || 'assets/images/couple-main.jpg';
+            deskCov.querySelectorAll('.elementor-motion-effects-layer').forEach(layer => {
+                if (layer.style.backgroundImage !== `url("${currentUrl}")`) {
+                    layer.style.setProperty('background-image', `url("${currentUrl}")`, 'important');
+                }
+            });
+        });
+        deskCov._motionObserver.observe(deskCov, { childList: true, subtree: true });
+    }
 
     // 5. Apply data-bind-href (href)
     document.querySelectorAll('[data-bind-href]').forEach(el => {
