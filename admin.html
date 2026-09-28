@@ -14,25 +14,29 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         :root {
-            --bg-base: #08070b;
-            --bg-canvas: #0f0d15;
-            --glass-card: rgba(22, 19, 29, 0.76);
-            --glass-card-hover: rgba(30, 26, 39, 0.88);
-            --glass-inner: rgba(12, 10, 18, 0.65);
-            --glass-border: rgba(229, 192, 123, 0.12);
-            --glass-border-focus: rgba(212, 168, 83, 0.7);
+            /* Dark Botanical Glassmorphic Palette */
+            --bg-base: #07100b;
+            --bg-canvas: #0b1811;
+            --glass-card: rgba(18, 38, 27, 0.65);
+            --glass-card-hover: rgba(24, 48, 35, 0.78);
+            --glass-inner: rgba(10, 24, 17, 0.68);
+            --glass-border: rgba(198, 232, 114, 0.14);
+            --glass-border-focus: #a6d875;
             
-            /* Luxury Aesthetic Palette */
-            --brand-gold: #d4a853;
-            --brand-gold-light: #f5d796;
-            --brand-gold-glow: rgba(212, 168, 83, 0.32);
-            --brand-rose: #e09f8d;
-            --brand-emerald: #10b981;
+            /* Botanical Leafora Accents */
+            --brand-sage: #c6e872;
+            --brand-sage-light: #d8f59d;
+            --brand-sage-glow: rgba(198, 232, 114, 0.35);
+            --brand-forest: #143021;
+            --brand-forest-deep: #0c1f15;
+            --brand-emerald: #23543b;
+            --brand-lime-grad: linear-gradient(135deg, #d4f099 0%, #a6d875 100%);
+            --brand-lime-text: #0d1e13;
             --brand-rose-red: #f43f5e;
             
-            --text-primary: #fdfbf7;
-            --text-secondary: #a8a29e;
-            --text-tertiary: #78716c;
+            --text-primary: #eaf5ed;
+            --text-secondary: #9ab8a4;
+            --text-tertiary: #678572;
             --radius-xl: 22px;
             --radius-lg: 16px;
             --radius-md: 12px;
@@ -52,9 +56,10 @@
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-base);
             background-image: 
-                radial-gradient(at 10% 10%, rgba(212, 168, 83, 0.12) 0px, transparent 45%),
-                radial-gradient(at 90% 20%, rgba(224, 159, 141, 0.08) 0px, transparent 50%),
-                radial-gradient(at 50% 90%, rgba(139, 92, 246, 0.06) 0px, transparent 50%);
+                radial-gradient(circle at 50% 0%, rgba(56, 115, 82, 0.35) 0%, transparent 60%),
+                radial-gradient(circle at 10% 70%, rgba(30, 68, 48, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 90% 35%, rgba(70, 135, 95, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 50% 95%, rgba(16, 38, 26, 0.6) 0%, transparent 60%);
             background-attachment: fixed;
             color: var(--text-primary);
             padding: 20px 16px 110px;
@@ -76,12 +81,12 @@
             justify-content: space-between;
             padding: 14px 20px;
             margin-bottom: 20px;
-            background: rgba(22, 19, 29, 0.72);
+            background: rgba(14, 30, 22, 0.75);
             backdrop-filter: blur(28px) saturate(190%);
             -webkit-backdrop-filter: blur(28px) saturate(190%);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-xl);
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
         }
 
         .brand-group {
@@ -94,16 +99,16 @@
             width: 40px;
             height: 40px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #d4a853 0%, #a47623 100%);
+            background: var(--brand-lime-grad);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #17120a;
+            color: var(--brand-lime-text);
             font-family: 'Playfair Display', serif;
             font-size: 1.25rem;
             font-weight: 800;
-            box-shadow: 0 4px 18px var(--brand-gold-glow);
-            border: 1px solid rgba(245, 215, 150, 0.4);
+            box-shadow: 0 4px 18px var(--brand-sage-glow);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         .brand-titles h1 {
@@ -117,8 +122,8 @@
         .brand-titles p {
             font-size: 0.72rem;
             font-weight: 500;
-            color: var(--brand-gold-light);
-            opacity: 0.85;
+            color: var(--brand-sage-light);
+            opacity: 0.9;
             letter-spacing: 0.2px;
         }
 
@@ -137,15 +142,15 @@
             font-size: 0.75rem;
             font-weight: 700;
             text-decoration: none;
-            color: #f5d796;
-            background: rgba(212, 168, 83, 0.12);
-            border: 1px solid rgba(212, 168, 83, 0.3);
+            color: var(--brand-sage-light);
+            background: rgba(198, 232, 114, 0.12);
+            border: 1px solid rgba(198, 232, 114, 0.3);
             transition: var(--transition-smooth);
         }
 
         .btn-live-preview:hover {
-            background: rgba(212, 168, 83, 0.22);
-            box-shadow: 0 0 14px var(--brand-gold-glow);
+            background: rgba(198, 232, 114, 0.22);
+            box-shadow: 0 0 14px var(--brand-sage-glow);
             transform: translateY(-1px);
         }
 
@@ -175,8 +180,8 @@
             height: 62px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--apple-gold);
-            box-shadow: 0 4px 16px rgba(229, 192, 123, 0.3);
+            border: 2px solid var(--brand-sage-light);
+            box-shadow: 0 4px 16px var(--brand-sage-glow);
             display: block;
         }
 
@@ -210,24 +215,24 @@
             font-weight: 700;
             padding: 5px 10px;
             border-radius: 20px;
-            background: rgba(48, 209, 88, 0.15);
-            color: #30d158;
-            border: 1px solid rgba(48, 209, 88, 0.3);
-            box-shadow: 0 0 12px rgba(48, 209, 88, 0.15);
+            background: rgba(166, 216, 117, 0.15);
+            color: var(--brand-sage-light);
+            border: 1px solid rgba(166, 216, 117, 0.3);
+            box-shadow: 0 0 12px var(--brand-sage-glow);
         }
 
         .live-pulse {
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background-color: #30d158;
+            background-color: #a6d875;
             animation: pulse-dot 1.8s infinite;
         }
 
         @keyframes pulse-dot {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(48, 209, 88, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(48, 209, 88, 0); }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(166, 216, 117, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(166, 216, 117, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(166, 216, 117, 0); }
         }
 
         /* Apple Segmented Pill Navigation */
@@ -237,7 +242,7 @@
             z-index: 50;
             display: flex;
             gap: 6px;
-            background: rgba(18, 15, 25, 0.86);
+            background: rgba(11, 24, 17, 0.88);
             backdrop-filter: blur(28px) saturate(200%);
             -webkit-backdrop-filter: blur(28px) saturate(200%);
             padding: 6px;
@@ -275,11 +280,11 @@
         }
 
         .tab-btn.active {
-            background: linear-gradient(135deg, #d4a853 0%, #a47623 100%);
-            color: #120e06;
+            background: var(--brand-lime-grad);
+            color: #0b1a10;
             font-weight: 800;
-            box-shadow: 0 4px 18px var(--brand-gold-glow);
-            border: 1px solid rgba(245, 215, 150, 0.5);
+            box-shadow: 0 4px 18px var(--brand-sage-glow);
+            border: 1px solid rgba(212, 240, 153, 0.5);
         }
 
         /* Tab Panes */
@@ -311,8 +316,8 @@
         }
 
         .apple-card:hover {
-            border-color: rgba(212, 168, 83, 0.28);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.42);
+            border-color: rgba(198, 232, 114, 0.32);
+            box-shadow: 0 14px 44px rgba(0, 0, 0, 0.45);
         }
 
         .card-header {
@@ -321,7 +326,7 @@
             justify-content: space-between;
             margin-bottom: 16px;
             padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(198, 232, 114, 0.08);
         }
 
         .card-header-title {
@@ -345,9 +350,9 @@
             font-weight: 700;
             padding: 3px 8px;
             border-radius: 6px;
-            background: rgba(212, 168, 83, 0.14);
-            color: var(--brand-gold-light);
-            border: 1px solid rgba(212, 168, 83, 0.28);
+            background: rgba(198, 232, 114, 0.12);
+            color: var(--brand-sage-light);
+            border: 1px solid rgba(198, 232, 114, 0.28);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -383,7 +388,7 @@
         }
 
         @keyframes flashHighlight {
-            0% { background: rgba(48, 209, 88, 0.25); border-color: #30d158; }
+            0% { background: rgba(166, 216, 117, 0.25); border-color: #a6d875; }
             100% { background: var(--glass-inner); border-color: var(--glass-border); }
         }
 
@@ -435,11 +440,12 @@
         }
 
         input[type="text"]:focus,
+        input[type="date"]:focus,
         textarea:focus,
         select:focus {
-            background: rgba(15, 23, 36, 0.95);
+            background: rgba(12, 26, 18, 0.95);
             border-color: var(--glass-border-focus);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+            box-shadow: 0 0 0 3px rgba(198, 232, 114, 0.18);
         }
 
         textarea {
@@ -470,8 +476,8 @@
         }
 
         .photo-card-item:hover {
-            background: rgba(18, 25, 38, 0.8);
-            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(16, 34, 24, 0.85);
+            border-color: rgba(198, 232, 114, 0.22);
         }
 
         .photo-thumb {
@@ -479,7 +485,7 @@
             height: 68px;
             border-radius: var(--radius-md);
             object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(198, 232, 114, 0.2);
             flex-shrink: 0;
             background: #000;
         }
@@ -511,15 +517,16 @@
             border-radius: 8px;
             font-size: 0.75rem;
             font-weight: 600;
-            background: rgba(255, 255, 255, 0.08);
-            color: #ffffff;
+            background: rgba(198, 232, 114, 0.1);
+            color: var(--brand-sage-light);
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(198, 232, 114, 0.25);
             transition: var(--transition-smooth);
         }
 
         .btn-upload-file:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(198, 232, 114, 0.2);
+            border-color: rgba(198, 232, 114, 0.4);
         }
 
         .photo-url-input {
@@ -544,29 +551,29 @@
         .action-bar-inner {
             width: 100%;
             max-width: 640px;
-            background: rgba(18, 15, 25, 0.88);
+            background: rgba(10, 22, 15, 0.92);
             backdrop-filter: blur(32px) saturate(200%);
             -webkit-backdrop-filter: blur(32px) saturate(200%);
-            border: 1px solid rgba(212, 168, 83, 0.25);
+            border: 1px solid rgba(198, 232, 114, 0.25);
             border-radius: 26px;
             padding: 10px 14px;
             display: flex;
             gap: 10px;
-            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65);
             pointer-events: auto;
         }
 
         .btn-primary {
             flex: 2;
-            background: linear-gradient(135deg, #d4a853 0%, #b88628 100%);
-            color: #171107;
+            background: var(--brand-lime-grad);
+            color: #0b1a10;
             padding: 14px;
             border-radius: var(--radius-lg);
             font-size: 0.94rem;
             font-weight: 800;
-            border: 1px solid rgba(245, 215, 150, 0.6);
+            border: 1px solid rgba(212, 240, 153, 0.6);
             cursor: pointer;
-            box-shadow: 0 4px 22px var(--brand-gold-glow);
+            box-shadow: 0 4px 22px var(--brand-sage-glow);
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             display: flex;
             align-items: center;
@@ -596,9 +603,9 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(212, 168, 83, 0.12);
-            border-color: rgba(212, 168, 83, 0.3);
-            color: var(--brand-gold-light);
+            background: rgba(198, 232, 114, 0.12);
+            border-color: rgba(198, 232, 114, 0.3);
+            color: var(--brand-sage-light);
         }
 
         .btn-secondary:active {
@@ -619,7 +626,7 @@
         .loading-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(6, 9, 14, 0.7);
+            background: rgba(6, 12, 8, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             display: flex;
@@ -641,7 +648,7 @@
             width: 36px;
             height: 36px;
             border: 3px solid rgba(255, 255, 255, 0.12);
-            border-top-color: var(--apple-blue);
+            border-top-color: var(--brand-sage-light);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
@@ -650,14 +657,14 @@
         div:where(.swal2-container).swal2-backdrop-show {
             backdrop-filter: blur(14px) !important;
             -webkit-backdrop-filter: blur(14px) !important;
-            background: rgba(4, 7, 12, 0.65) !important;
+            background: rgba(3, 8, 5, 0.7) !important;
         }
 
         .apple-swal {
-            background: rgba(18, 25, 38, 0.92) !important;
+            background: rgba(12, 28, 19, 0.96) !important;
             backdrop-filter: blur(28px) saturate(190%) !important;
             -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            border: 1px solid rgba(198, 232, 114, 0.22) !important;
             border-radius: var(--radius-xl) !important;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6) !important;
             color: #ffffff !important;
@@ -738,18 +745,18 @@
 
         <!-- TAB 1: GENERATOR TAMU -->
         <div id="tab-tamu" class="tab-pane active">
-            <div class="apple-card" style="border-color: rgba(212,168,83,0.35); background: linear-gradient(180deg, rgba(32,26,40,0.85) 0%, rgba(18,14,24,0.9) 100%);">
+            <div class="apple-card" style="border-color: rgba(198, 232, 114, 0.28); background: linear-gradient(180deg, rgba(18, 38, 27, 0.88) 0%, rgba(10, 22, 15, 0.94) 100%);">
                 <div class="card-header">
-                    <div class="card-header-title" style="color: var(--brand-gold-light);">
+                    <div class="card-header-title" style="color: var(--brand-sage-light);">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         <span>Generator Tautan Tamu Khusus</span>
                     </div>
-                    <span class="card-header-badge" style="background: rgba(212,168,83,0.18); color: #f5d796; border-color: rgba(212,168,83,0.4);">Personal Link</span>
+                    <span class="card-header-badge" style="background: rgba(198, 232, 114, 0.14); color: var(--brand-sage-light); border-color: rgba(198, 232, 114, 0.35);">Personal Link</span>
                 </div>
 
                 <div class="form-group">
                     <label>Domain Undangan</label>
-                    <select id="domain_select" onchange="generateGuestLink()" style="background: rgba(12,10,18,0.85); color: #f5d796; font-weight: 600; border-color: rgba(212,168,83,0.3);">
+                    <select id="domain_select" onchange="generateGuestLink()" style="background: rgba(8, 18, 12, 0.85); color: var(--brand-sage-light); font-weight: 600; border-color: rgba(198, 232, 114, 0.25);">
                         <option value="https://fahmiokta.my.id/">https://fahmiokta.my.id/ (Domain Utama)</option>
                         <option value="auto">Deteksi Otomatis Browser</option>
                     </select>
@@ -763,11 +770,11 @@
 
                 <div class="form-group">
                     <label>Tautan Undangan Khusus</label>
-                    <input type="text" id="guest_link_output" readonly value="" style="background: rgba(10,8,15,0.92); color: #f5d796; font-family: monospace; font-size: 0.85rem; border-color: rgba(212,168,83,0.35);">
+                    <input type="text" id="guest_link_output" readonly value="" style="background: rgba(6, 14, 10, 0.92); color: var(--brand-sage-light); font-family: monospace; font-size: 0.85rem; border-color: rgba(198, 232, 114, 0.3);">
                 </div>
 
                 <div class="form-grid-2" style="margin-top: 14px;">
-                    <button type="button" onclick="copyGuestLink()" class="btn-secondary" style="background: linear-gradient(135deg, #d4a853 0%, #b88628 100%); color:#140f06; border: 1px solid rgba(245,215,150,0.5); font-weight:800; box-shadow: 0 4px 16px var(--brand-gold-glow);">
+                    <button type="button" onclick="copyGuestLink()" class="btn-secondary" style="background: var(--brand-lime-grad); color:#0b1a10; border: 1px solid rgba(212, 240, 153, 0.5); font-weight:800; box-shadow: 0 4px 16px var(--brand-sage-glow);">
                         Salin Tautan
                     </button>
                     <button type="button" onclick="shareGuestWhatsApp()" class="btn-secondary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color:#fff; border: 1px solid rgba(16,185,129,0.4); font-weight:700; box-shadow: 0 4px 16px rgba(16,185,129,0.25);">
@@ -780,15 +787,15 @@
         <!-- TAB 2: RSVP & UCAPAN -->
         <div id="tab-rsvp" class="tab-pane">
             <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-bottom:16px;">
-                <div class="apple-card" style="padding:14px; text-align:center; margin-bottom:0; background:rgba(30,24,38,0.7); border-color:rgba(212,168,83,0.3);">
+                <div class="apple-card" style="padding:14px; text-align:center; margin-bottom:0; background:rgba(18, 38, 27, 0.7); border-color:rgba(198, 232, 114, 0.25);">
                     <div style="font-size:0.72rem; color:var(--text-secondary); margin-bottom:4px;">Total Ucapan</div>
-                    <div id="stat_total" style="font-size:1.4rem; font-weight:800; color:#f5d796;">0</div>
+                    <div id="stat_total" style="font-size:1.4rem; font-weight:800; color:var(--brand-sage-light);">0</div>
                 </div>
-                <div class="apple-card" style="padding:14px; text-align:center; margin-bottom:0; background:rgba(12,38,28,0.7); border-color:rgba(16,185,129,0.35);">
+                <div class="apple-card" style="padding:14px; text-align:center; margin-bottom:0; background:rgba(12, 38, 28, 0.7); border-color:rgba(16, 185, 129, 0.35);">
                     <div style="font-size:0.72rem; color:#6ee7b7; margin-bottom:4px;">Hadir</div>
                     <div id="stat_hadir" style="font-size:1.4rem; font-weight:800; color:#34d399;">0</div>
                 </div>
-                <div class="apple-card" style="padding:14px; text-align:center; margin-bottom:0; background:rgba(45,16,25,0.7); border-color:rgba(244,63,94,0.35);">
+                <div class="apple-card" style="padding:14px; text-align:center; margin-bottom:0; background:rgba(45, 16, 25, 0.7); border-color:rgba(244, 63, 94, 0.35);">
                     <div style="font-size:0.72rem; color:#fda4af; margin-bottom:4px;">Tidak Hadir</div>
                     <div id="stat_tidak" style="font-size:1.4rem; font-weight:800; color:#fb7185;">0</div>
                 </div>
@@ -1155,8 +1162,8 @@
                     <span class="card-header-badge">Cloud Storage</span>
                 </div>
 
-                <div class="form-group" style="background: rgba(14, 165, 233, 0.08); padding: 14px; border-radius: var(--radius-md); border: 1px solid rgba(14, 165, 233, 0.25);">
-                    <label style="color: #38bdf8;">API Key ImgBB (Opsional untuk Direct Cloud Upload)</label>
+                <div class="form-group" style="background: rgba(198, 232, 114, 0.08); padding: 14px; border-radius: var(--radius-md); border: 1px solid rgba(198, 232, 114, 0.22);">
+                    <label style="color: var(--brand-sage-light);">API Key ImgBB (Opsional untuk Direct Cloud Upload)</label>
                     <input type="text" id="imgbb_key" value="bd55f725fc71f21f49b55f8e7f293fd6" placeholder="Masukkan API Key ImgBB">
                     <span class="input-hint">Foto yang diunggah dari ponsel akan otomatis dikonversi dan disimpan ke Cloud ImgBB.</span>
                 </div>
@@ -1472,7 +1479,7 @@
             position: 'top-end',
             showConfirmButton: false,
             timer: 1600,
-            background: '#121a28',
+            background: '#0c1c13',
             color: '#fff'
         });
         Toast.fire({
@@ -1488,10 +1495,10 @@
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#ff453a',
-            cancelButtonColor: '#334155',
+            cancelButtonColor: '#1b3826',
             confirmButtonText: 'Ya, Reset Semua',
             cancelButtonText: 'Batal',
-            background: '#121a28',
+            background: '#0c1c13',
             color: '#fff'
         });
 
@@ -1519,7 +1526,7 @@
                 text: 'Klik "Simpan Perubahan" untuk menerapkan ke Cloudflare D1.',
                 timer: 2000,
                 showConfirmButton: false,
-                background: '#121a28',
+                background: '#0c1c13',
                 color: '#fff'
             });
         }
@@ -1589,7 +1596,7 @@
                 text: link,
                 timer: 1500,
                 showConfirmButton: false,
-                background: '#121a28',
+                background: '#0c1c13',
                 color: '#fff',
                 customClass: { popup: 'apple-swal' }
             });
@@ -1657,7 +1664,7 @@
                                 text: 'Tautan foto publik berhasil diperoleh.',
                                 timer: 1500,
                                 showConfirmButton: false,
-                                background: '#121a28',
+                                background: '#0c1c13',
                                 color: '#fff'
                             });
                         } else {
@@ -1671,7 +1678,7 @@
                             icon: 'warning',
                             title: 'Upload Cloud Gagal',
                             text: 'Foto tetap disimpan secara lokal (' + err.message + ').',
-                            background: '#121a28',
+                            background: '#0c1c13',
                             color: '#fff'
                         });
                     }
@@ -2002,7 +2009,7 @@
                     text: 'Data undangan telah aktif secara global untuk semua tamu.',
                     timer: 2000,
                     showConfirmButton: false,
-                    background: '#121a28',
+                    background: '#0c1c13',
                     color: '#fff'
                 });
                 syncLiveOverview();
@@ -2014,7 +2021,7 @@
                 icon: 'warning',
                 title: 'Tersimpan Lokal',
                 text: 'Data tersimpan di browser ini (' + err.message + ').',
-                background: '#121a28',
+                background: '#0c1c13',
                 color: '#fff'
             });
         } finally {
@@ -2047,12 +2054,12 @@
 
                 container.innerHTML = wishes.map(w => {
                     const isHadir = (w.presence || '').toLowerCase() === 'hadir';
-                    const badgeBg = isHadir ? 'rgba(48,209,88,0.15)' : 'rgba(255,69,58,0.15)';
-                    const badgeColor = isHadir ? '#30d158' : '#ff453a';
+                    const badgeBg = isHadir ? 'rgba(52,211,153,0.15)' : 'rgba(255,69,58,0.15)';
+                    const badgeColor = isHadir ? '#34d399' : '#ff453a';
                     const badgeText = isHadir ? 'Hadir' : 'Tidak Hadir';
 
                     return `
-                        <div style="background:rgba(10,15,23,0.75); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:8px;">
+                        <div style="background:rgba(12,28,19,0.75); border:1px solid rgba(198,232,114,0.14); border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:8px;">
                             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
                                 <div style="display:flex; align-items:center; gap:8px;">
                                     <span style="font-weight:700; color:#f8fafc; font-size:0.9rem;">${escapeHtml(w.name)}</span>
@@ -2088,10 +2095,10 @@
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#ff453a',
-            cancelButtonColor: '#334155',
+            cancelButtonColor: '#1b3826',
             confirmButtonText: 'Ya, Hapus',
             cancelButtonText: 'Batal',
-            background: '#121a28',
+            background: '#0c1c13',
             color: '#fff'
         });
 
@@ -2106,15 +2113,15 @@
                         text: 'Ucapan berhasil dihapus dari Cloudflare D1.',
                         timer: 1200,
                         showConfirmButton: false,
-                        background: '#121a28',
+                        background: '#0c1c13',
                         color: '#fff'
                     });
                     loadAdminRsvp();
                 } else {
-                    Swal.fire({ icon: 'error', title: 'Gagal', text: data.error || 'Gagal menghapus', background: '#121a28', color: '#fff' });
+                    Swal.fire({ icon: 'error', title: 'Gagal', text: data.error || 'Gagal menghapus', background: '#0c1c13', color: '#fff' });
                 }
             } catch (err) {
-                Swal.fire({ icon: 'error', title: 'Gagal Terhubung', text: err.message, background: '#121a28', color: '#fff' });
+                Swal.fire({ icon: 'error', title: 'Gagal Terhubung', text: err.message, background: '#0c1c13', color: '#fff' });
             }
         }
     }
