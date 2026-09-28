@@ -207,13 +207,25 @@ function applyWeddingData() {
         'couple.groom.nickname': d.couple.groom.nickname,
         'couple.groom.fullname': d.couple.groom.fullname,
         'couple.groom.parents': d.couple.groom.parents,
-        'couple.groom.instagram': d.couple.groom.instagram,
+        'couple.groom.instagram': (function() {
+            let ig = (d.couple?.groom?.instagram || '').trim();
+            if (ig && !ig.startsWith('http://') && !ig.startsWith('https://')) {
+                ig = 'https://instagram.com/' + ig.replace(/^@/, '');
+            }
+            return ig;
+        })(),
         'couple.groom.photo': d.couple.groom.photo,
         
         'couple.bride.nickname': d.couple.bride.nickname,
         'couple.bride.fullname': d.couple.bride.fullname,
         'couple.bride.parents': d.couple.bride.parents,
-        'couple.bride.instagram': d.couple.bride.instagram,
+        'couple.bride.instagram': (function() {
+            let ig = (d.couple?.bride?.instagram || '').trim();
+            if (ig && !ig.startsWith('http://') && !ig.startsWith('https://')) {
+                ig = 'https://instagram.com/' + ig.replace(/^@/, '');
+            }
+            return ig;
+        })(),
         'couple.bride.photo': d.couple.bride.photo,
 
         'quotes.fullHtml': quoteHtml,
@@ -351,8 +363,14 @@ function applyWeddingData() {
     // 5. Apply data-bind-href (href)
     document.querySelectorAll('[data-bind-href]').forEach(el => {
         const key = el.getAttribute('data-bind-href');
-        if (bindings[key]) {
-            el.href = bindings[key];
+        const hrefVal = bindings[key];
+        if (hrefVal) {
+            el.href = hrefVal;
+            const widget = el.closest('.elementor-widget-bisdev_social_icons');
+            if (widget) widget.style.display = '';
+        } else if (key && key.includes('instagram')) {
+            const widget = el.closest('.elementor-widget-bisdev_social_icons');
+            if (widget) widget.style.display = 'none';
         }
     });
 

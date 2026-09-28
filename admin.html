@@ -840,6 +840,11 @@
                     <label>Nama Orang Tua</label>
                     <input type="text" id="groom_parents" placeholder="Putra dari Bapak ... &amp; Ibu ...">
                 </div>
+                <div class="form-group">
+                    <label>Link / Username Instagram</label>
+                    <input type="text" id="groom_ig" placeholder="Contoh: @fahmi atau https://instagram.com/fahmi">
+                    <span class="input-hint">Isi username (@username) atau link profil lengkap. Kosongkan jika tidak ingin menampilkan tombol Instagram.</span>
+                </div>
             </div>
 
             <!-- Bride -->
@@ -866,6 +871,11 @@
                 <div class="form-group">
                     <label>Nama Orang Tua</label>
                     <input type="text" id="bride_parents" placeholder="Putri dari Bapak ... &amp; Ibu ...">
+                </div>
+                <div class="form-group">
+                    <label>Link / Username Instagram</label>
+                    <input type="text" id="bride_ig" placeholder="Contoh: @okta atau https://instagram.com/okta">
+                    <span class="input-hint">Isi username (@username) atau link profil lengkap. Kosongkan jika tidak ingin menampilkan tombol Instagram.</span>
                 </div>
             </div>
 
@@ -1344,9 +1354,11 @@
         groom_nick: "Groom",
         groom_full: "Nama Mempelai Pria",
         groom_parents: "Putra dari Bapak ... & Ibu ...",
+        groom_ig: "https://www.instagram.com/",
         bride_nick: "Bride",
         bride_full: "Nama Mempelai Wanita",
         bride_parents: "Putri dari Bapak ... & Ibu ...",
+        bride_ig: "https://www.instagram.com/",
         monogram: "W",
         date_short: "01 . 01 . 2027",
         akad_date: "Jumat, 1 Januari 2027",
@@ -1404,8 +1416,8 @@
 
     function resetSection(sectionKey) {
         const resetMap = {
-            groom: ['groom_nick', 'groom_full', 'groom_parents'],
-            bride: ['bride_nick', 'bride_full', 'bride_parents'],
+            groom: ['groom_nick', 'groom_full', 'groom_parents', 'groom_ig'],
+            bride: ['bride_nick', 'bride_full', 'bride_parents', 'bride_ig'],
             identity: ['monogram', 'date_short'],
             akad: ['akad_date', 'akad_time', 'akad_place_title', 'akad_place', 'akad_maps'],
             resepsi: ['resepsi_date', 'resepsi_time', 'resepsi_place_title', 'resepsi_place', 'resepsi_maps'],
@@ -1700,10 +1712,16 @@
         document.getElementById('groom_nick').value = saved.couple?.groom?.nickname || '';
         document.getElementById('groom_full').value = saved.couple?.groom?.fullname || '';
         document.getElementById('groom_parents').value = (saved.couple?.groom?.parents || '').replace(/<br>/g, ' ');
+        if (document.getElementById('groom_ig')) {
+            document.getElementById('groom_ig').value = saved.couple?.groom?.instagram || '';
+        }
 
         document.getElementById('bride_nick').value = saved.couple?.bride?.nickname || '';
         document.getElementById('bride_full').value = saved.couple?.bride?.fullname || '';
         document.getElementById('bride_parents').value = (saved.couple?.bride?.parents || '').replace(/<br>/g, ' ');
+        if (document.getElementById('bride_ig')) {
+            document.getElementById('bride_ig').value = saved.couple?.bride?.instagram || '';
+        }
 
         document.getElementById('monogram').value = saved.couple?.monogram || '';
         document.getElementById('date_short').value = saved.couple?.weddingDateShort || '';
@@ -1774,14 +1792,28 @@
                     nickname: document.getElementById('groom_nick').value.trim() || "Groom",
                     fullname: document.getElementById('groom_full').value.trim() || "Nama Mempelai Pria",
                     parents: document.getElementById('groom_parents').value.trim() || "Putra dari Bapak ... & Ibu ...",
-                    instagram: "https://instagram.com/",
+                    instagram: (function() {
+                        let ig = (document.getElementById('groom_ig')?.value || '').trim();
+                        if (!ig) return '';
+                        if (!ig.startsWith('http://') && !ig.startsWith('https://')) {
+                            ig = 'https://instagram.com/' + ig.replace(/^@/, '');
+                        }
+                        return ig;
+                    })(),
                     photo: document.getElementById('val_groom').value.trim() || "assets/images/couple-main.jpg"
                 },
                 bride: {
                     nickname: document.getElementById('bride_nick').value.trim() || "Bride",
                     fullname: document.getElementById('bride_full').value.trim() || "Nama Mempelai Wanita",
                     parents: document.getElementById('bride_parents').value.trim() || "Putri dari Bapak ... & Ibu ...",
-                    instagram: "https://instagram.com/",
+                    instagram: (function() {
+                        let ig = (document.getElementById('bride_ig')?.value || '').trim();
+                        if (!ig) return '';
+                        if (!ig.startsWith('http://') && !ig.startsWith('https://')) {
+                            ig = 'https://instagram.com/' + ig.replace(/^@/, '');
+                        }
+                        return ig;
+                    })(),
                     photo: document.getElementById('val_bride').value.trim() || "assets/images/couple-main.jpg"
                 }
             },
