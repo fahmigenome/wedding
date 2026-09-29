@@ -1,22 +1,22 @@
 let WEDDING_DATA = {
     couple: {
-        monogram: "W",
+        monogram: "FO",
         title: "The Wedding of",
-        weddingDateShort: "01 . 01 . 2027",
+        weddingDateShort: "07 . 10 . 2026",
         
         groom: {
-            nickname: "Groom",
-            fullname: "Nama Mempelai Pria",
-            parents: "Putra dari Bapak ... & Ibu ...",
-            instagram: "https://www.instagram.com/",
+            nickname: "Fahmi",
+            fullname: "Fahmi Al Faqih",
+            parents: "Putra dari bapak Sono & ibu Supeni",
+            instagram: "https://www.instagram.com/roxzii__/",
             photo: "assets/images/groom-art.jpg"
         },
         
         bride: {
-            nickname: "Bride",
-            fullname: "Nama Mempelai Wanita",
-            parents: "Putri dari Bapak ... & Ibu ...",
-            instagram: "https://www.instagram.com/",
+            nickname: "Okta",
+            fullname: "Dwiokta Priyatin",
+            parents: "Putri dari (almh) Bapak Simin & Ibu Aminah",
+            instagram: "https://www.instagram.com/dwioktapy_410/",
             photo: "assets/images/bride-art.jpg"
         }
     },
@@ -39,15 +39,15 @@ let WEDDING_DATA = {
     story: {
         title: "Love Story",
         story1Title: "Awal Cerita",
-        story1Desc: "Berawal dari pertemuan sederhana, kami saling mengenal dan mulai berbagi banyak cerita. Tanpa disadari, kebersamaan itu tumbuh menjadi rasa nyaman yang semakin kuat dari hari ke hari.",
+        story1Desc: "Takdir memang punya cara yang paling rahasia untuk mempertemukan dua insan. Satu kelas, satu angkatan, satu jurusan-tapi semesta sempat memilih untuk membuat kami saling asing. Hingga akhirnya di tahun 2024,waktu dan tempat yang sama membuka babak baru kisah kita yang tak pernah disangka.",
         story2Title: "Lamaran",
-        story2Desc: "Dengan niat yang tulus dan restu keluarga, kami memutuskan untuk melangkah ke tahap yang lebih serius. Momen lamaran menjadi awal dari perjalanan baru yang penuh harapan dan doa baik.",
+        story2Desc: "Kehendaknya menuntun kami untuk\nmelangkah lebih jauh dengan melangsungkan, acara pertunangan pada tanggal 22 November 2025",
         story3Title: "Pernikahan",
-        story3Desc: "Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan. Semoga langkah ini menjadi awal kehidupan baru yang penuh cinta, kebahagiaan, dan keberkahan."
+        story3Desc: "Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan."
     },
 
     photos: {
-        coverBg: "assets/images/cover-bg.webp",
+        coverBg: "assets/images/cover-wreath.jpg",
         mainCouple: "assets/images/cover-wreath.jpg",
         storyPhoto: "assets/images/story-art.jpg",
         closingPhoto: "assets/images/countdown-art.jpg"
@@ -59,19 +59,19 @@ let WEDDING_DATA = {
         akad: {
             title: "Akad Nikah",
             dayDate: "Rabu, 7 Oktober 2026",
-            time: "Pukul : 09.00 WIB",
+            time: "Pukul 09.00 WIB - Selesai",
             placeTitle: "KEDIAMAN MEMPELAI WANITA",
             address: "Jl. Contoh Alamat Acara Pernikahan No. 123, Kota",
-            mapsUrl: "https://maps.google.com"
+            mapsUrl: "https://maps.app.goo.gl/hgkfW9eKpcRTzg3T7"
         },
         
         resepsi: {
             title: "Resepsi",
             dayDate: "Rabu, 7 Oktober 2026",
-            time: "Pukul : 11.00 WIB - Selesai",
+            time: "Pukul 09.00 WIB - Selesai",
             placeTitle: "KEDIAMAN MEMPELAI WANITA",
             address: "Jl. Contoh Alamat Acara Pernikahan No. 123, Kota",
-            mapsUrl: "https://maps.google.com"
+            mapsUrl: "https://maps.app.goo.gl/hgkfW9eKpcRTzg3T7"
         }
     },
 
@@ -81,25 +81,25 @@ let WEDDING_DATA = {
         bank: {
             bankName: "SeaBank",
             logo: "assets/images/bank-seabank.svg?v=2",
-            accountNumber: "1234567890",
-            accountHolder: "Nama Pemilik Rekening"
+            accountNumber: "901930516489",
+            accountHolder: "Fahmi Al Faqih"
         },
         bankGroom: {
             bankName: "SeaBank",
             logo: "assets/images/bank-seabank.svg?v=2",
-            accountNumber: "1234567890",
-            accountHolder: "Fahmi Fakih"
+            accountNumber: "901930516489",
+            accountHolder: "Fahmi Al Faqih"
         },
         bankBride: {
             bankName: "SeaBank",
             logo: "assets/images/bank-seabank.svg?v=2",
-            accountNumber: "0987654321",
-            accountHolder: "Okta"
+            accountNumber: "901600333608",
+            accountHolder: "Dwi Okta Priyatin"
         },
         physicalGift: {
-            recipientName: "Nama Penerima Kado",
-            phone: "08123456789",
-            address: "Jl. Alamat Pengiriman Kado Fisik No. 123"
+            recipientName: "Dwi Okta Priyatin",
+            phone: "+62 822-2610-9392",
+            address: "Desa berta,kalibangkang,Rt 06 Rw 01 kec.susukan kab.Banjarnegara"
         }
     },
 
@@ -147,7 +147,10 @@ if (localData) {
 async function fetchLiveConfig() {
     const configEndpoint = (WEDDING_DATA.api && WEDDING_DATA.api.configUrl) || "https://wedding-api.fahmifakih89.workers.dev/api/config";
     try {
-        const res = await fetch(configEndpoint);
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const timeoutId = controller ? setTimeout(() => controller.abort(), 4000) : null;
+        const res = await fetch(configEndpoint, controller ? { signal: controller.signal } : {});
+        if (timeoutId) clearTimeout(timeoutId);
         if (res.ok) {
             const result = await res.json();
             if (result.success && result.data && typeof result.data === 'object') {
