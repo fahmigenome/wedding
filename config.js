@@ -59,7 +59,7 @@ let WEDDING_DATA = {
         akad: {
             title: "Akad Nikah",
             dayDate: "Rabu, 7 Oktober 2026",
-            time: "Pukul 09.00 WIB - Selesai",
+            time: "Pukul 09.00 WIB",
             placeTitle: "KEDIAMAN MEMPELAI WANITA",
             address: "Jl. Contoh Alamat Acara Pernikahan No. 123, Kota",
             mapsUrl: "https://maps.app.goo.gl/hgkfW9eKpcRTzg3T7"
