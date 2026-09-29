@@ -39,7 +39,7 @@ let WEDDING_DATA = {
     story: {
         title: "Love Story",
         story1Title: "Awal Cerita",
-        story1Desc: "Takdir memang punya cara yang paling rahasia untuk mempertemukan dua insan. Satu kelas, satu angkatan, satu jurusan-tapi semesta sempat memilih untuk membuat kami saling asing. Hingga akhirnya di tahun 2024,waktu dan tempat yang sama membuka babak baru kisah kita yang tak pernah disangka.",
+        story1Desc: "Barangkali dulu kita belum siap, maka semesta membiarkan kita menjadi dua orang asing yang melangkah di lorong yang sama sepanjang 2018–2020. Satu angkatan, satu kelas, satu jurusan, tetapi belum satu garis takdir.\nLalu 2024 datang, membuktikan bahwa tidak ada yang kebetulan. Di tempat dan waktu yang paling tepat, cerita yang dulu tertunda akhirnya dimulai. Ternyata rumah yang kucari selama ini, pernah berada di ruang kelas yang sama.",
         story2Title: "Lamaran",
         story2Desc: "Kehendaknya menuntun kami untuk\nmelangkah lebih jauh dengan melangsungkan, acara pertunangan pada tanggal 22 November 2025",
         story3Title: "Pernikahan",
