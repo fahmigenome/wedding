@@ -67,7 +67,7 @@ let WEDDING_DATA = {
         
         resepsi: {
             title: "Resepsi",
-            dayDate: "Rabu, 7 Oktober 2026",
+            dayDate: "Selasa, 6 Oktober 2026",
             time: "Pukul 09.00 WIB - Selesai",
             placeTitle: "KEDIAMAN MEMPELAI WANITA",
             address: "Jl. Contoh Alamat Acara Pernikahan No. 123, Kota",
