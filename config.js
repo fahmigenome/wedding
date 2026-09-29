@@ -61,7 +61,7 @@ let WEDDING_DATA = {
             dayDate: "Rabu, 7 Oktober 2026",
             time: "Pukul 09.00 WIB",
             placeTitle: "KEDIAMAN MEMPELAI WANITA",
-            address: "Jl. Contoh Alamat Acara Pernikahan No. 123, Kota",
+            address: "Desa berta,kalibangkang,Rt 06 Rw 01 kec.susukan kab.Banjarnegara",
             mapsUrl: "https://maps.app.goo.gl/hgkfW9eKpcRTzg3T7"
         },
         
@@ -70,7 +70,7 @@ let WEDDING_DATA = {
             dayDate: "Selasa, 6 Oktober 2026",
             time: "Pukul 09.00 WIB - Selesai",
             placeTitle: "KEDIAMAN MEMPELAI WANITA",
-            address: "Jl. Contoh Alamat Acara Pernikahan No. 123, Kota",
+            address: "Desa berta,kalibangkang,Rt 06 Rw 01 kec.susukan kab.Banjarnegara",
             mapsUrl: "https://maps.app.goo.gl/hgkfW9eKpcRTzg3T7"
         }
     },
