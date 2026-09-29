@@ -43,7 +43,7 @@ let WEDDING_DATA = {
         story2Title: "Lamaran",
         story2Desc: "Kehendaknya menuntun kami untuk\nmelangkah lebih jauh dengan melangsungkan, acara pertunangan pada tanggal 22 November 2025",
         story3Title: "Pernikahan",
-        story3Desc: "Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan."
+        story3Desc: "Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan. Semoga langkah ini menjadi awal kehidupan baru yang penuh cinta, kebahagiaan, dan keberkahan."
     },
 
     photos: {
