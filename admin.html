@@ -1919,8 +1919,22 @@
 
     async function loadCloudConfig() {
         const overlay = document.getElementById('loadingOverlay');
+        const hideOverlay = () => {
+            if (overlay && !overlay.classList.contains('hidden')) {
+                overlay.classList.add('hidden');
+                setTimeout(() => { if (overlay) overlay.style.display = 'none'; }, 350);
+            }
+        };
+
+        // Fallback safety timeout: overlay MUST disappear after max 3.5 seconds
+        const safetyTimer = setTimeout(hideOverlay, 3500);
+
         try {
-            const res = await fetch(API_CONFIG_URL);
+            const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+            const fetchTimer = controller ? setTimeout(() => controller.abort(), 4000) : null;
+            const res = await fetch(API_CONFIG_URL, controller ? { signal: controller.signal } : {});
+            if (fetchTimer) clearTimeout(fetchTimer);
+
             if (res.ok) {
                 const json = await res.json();
                 if (json.success && json.data) {
@@ -1931,7 +1945,8 @@
         } catch(err) {
             console.warn('Gagal load dari cloud D1:', err);
         } finally {
-            if (overlay) overlay.classList.add('hidden');
+            clearTimeout(safetyTimer);
+            hideOverlay();
         }
     }
 

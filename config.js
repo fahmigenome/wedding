@@ -310,11 +310,16 @@ function applyWeddingData() {
         'audio.src': d.audio.src
     };
 
-    // 1. Apply data-bind (innerText)
+    // 1. Apply data-bind (innerText or formatted text with linebreaks if containing newlines)
     document.querySelectorAll('[data-bind]').forEach(el => {
         const key = el.getAttribute('data-bind');
         if (bindings[key] !== undefined) {
-            el.innerText = bindings[key];
+            const val = bindings[key];
+            if (typeof val === 'string' && val.includes('\n')) {
+                el.innerHTML = val.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+            } else {
+                el.innerText = val;
+            }
         }
     });
 
